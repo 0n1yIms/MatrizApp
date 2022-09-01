@@ -110,16 +110,18 @@ public class GaussActivity extends AppCompatActivity {
         {
             Escalonador gaussJordan = new Escalonador(matMain.getCopy());
             gaussJordan.resolver();
-            matRta = gaussJordan.getMat();
             steps = gaussJordan.getSteps();
-            if (gaussJordan.getResult() == Escalonador.SCD)
-                tvRta.setText("Sistema Compatible Determinado");
-            else if (gaussJordan.getResult() == Escalonador.SCI)
-                tvRta.setText("Sistema Compatible Indeterminado");
-            else
-                tvRta.setText("Sistema Incompatible");
-            showMatrix();
-            resolved = true;
+            if(steps.size() > 0) {
+                matRta = gaussJordan.getMat();
+                if (gaussJordan.getResult() == Escalonador.SCD)
+                    tvRta.setText("Sistema Compatible Determinado");
+                else if (gaussJordan.getResult() == Escalonador.SCI)
+                    tvRta.setText("Sistema Compatible Indeterminado");
+                else
+                    tvRta.setText("Sistema Incompatible");
+                showMatrix();
+                resolved = true;
+            }
         });
 
         findViewById(R.id.btn_back).setOnClickListener((view ->

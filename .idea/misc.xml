@@ -13,12 +13,13 @@
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/drawable/ic_utn_logo.xml" value="0.2595" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/drawable/splash.xml" value="0.10400000000000001" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/drawable/utn_logo.xml" value="0.199" />
-        <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/activity_gauss.xml" value="0.4" />
+        <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/activity_gauss.xml" value="0.2" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/activity_gauss2.xml" value="0.25416666666666665" />
-        <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/activity_gauss_steps.xml" value="0.536" />
+        <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/activity_gauss_steps.xml" value="0.264" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/activity_gauss_steps2.xml" value="0.265625" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/btn_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/fragment_second.xml" value="0.265625" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_btn.xml" value="0.25416666666666665" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_item.xml" value="0.6" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_item_matrix.xml" value="0.25416666666666665" />
@@ -27,6 +28,7 @@
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_item_system.xml" value="1.0" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_item_system2.xml" value="0.8800000000000001" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_matrix.xml" value="0.2" />
+        <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_matrix_steps.xml" value="0.265625" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_matrix_view.xml" value="0.265625" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/layout/layout_splash_screen.xml" value="0.253125" />
         <entry key="..\:/app matriz/android studio/MatrixCalc/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2595" />
