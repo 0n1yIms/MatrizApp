@@ -6,8 +6,13 @@ import java.util.ArrayList;
 
 public class Escalonador {
     private static final String TAG = "Escalonador";
+    public static final int SCD = 0;
+    public static final int SCI = 1;
+    public static final int SI = 2;
+
     private Mat mat;
-    public ArrayList<MatInfo> steps = new ArrayList<>(0);
+    private int result = -1;
+    private ArrayList<MatInfo> steps = new ArrayList<>(0);
 
     public class MatInfo {
         public Mat matPrevious;
@@ -25,10 +30,22 @@ public class Escalonador {
         this.mat = mat;
     }
 
-    public Mat resolver() {
+    public void resolver() {
         escalonar();
         invertSteps();
-        return mat;
+        result = analyzeResult();
+    }
+    public ArrayList<MatInfo> getSteps()
+    {
+        return (ArrayList<MatInfo>) steps.clone();
+    }
+    public Mat getMat()
+    {
+        return mat.getCopy();
+    }
+    public int getResult()
+    {
+        return result;
     }
 
     private void invertSteps()
@@ -40,8 +57,7 @@ public class Escalonador {
         }
     }
     private void escalonar() {
-        mostrar_matriz();
-        for (int i = 0; i < Math.min(mat.cols, mat.rows) - 1; i++) {
+        for (int i = 0; i < Math.min(mat.cols - 1, mat.rows); i++) {
             if (check(i, i)) {
                 gaussjordan(i, i);
             }
@@ -113,6 +129,39 @@ public class Escalonador {
 
         steps.add(new MatInfo(previousMat, mat.getCopy(), str));
 //            mostrar_matriz();
+    }
+
+    int analyzeResult()
+    {
+        int nullRows = 0;
+        int incompatibleRows = 0;
+        for (int r = 0; r < mat.rows; r++) {
+            boolean isNullRow = true;
+            for (int c = 0; c < mat.cols; c++) {
+                if(mat.mat[r][c].toFloat() != 0.f) {
+                    isNullRow = false;
+                    break;
+                }
+            }
+            boolean isIncompatibleRow = true;
+            for (int c = 0; c < mat.cols; c++) {
+                if(c < mat.cols - 1 && mat.mat[r][c].toFloat() != 0.f || c == mat.cols - 1 && mat.mat[r][c].toFloat() == 0.f) {
+                    isIncompatibleRow = false;
+                    break;
+                }
+            }
+
+            if(isNullRow)
+                nullRows++;
+            if(isIncompatibleRow)
+                incompatibleRows++;
+        }
+        if(incompatibleRows > 0)
+            return SI;
+        if(mat.rows - nullRows == mat.cols - 1)
+            return SCD;
+        else
+            return SCI;
     }
 
     void mostrar_matriz() {

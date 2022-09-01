@@ -1,5 +1,6 @@
 package com.ims.matrixcalc;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -39,6 +40,8 @@ public class GaussStepsActivity extends AppCompatActivity {
         tvInfo = findViewById(R.id.tv_info);
         show();
 
+        findViewById(R.id.btn_back_activity).setOnClickListener((view ->
+                startActivity(new Intent(GaussStepsActivity.this, GaussActivity.class))));
 
         findViewById(R.id.btn_back).setOnClickListener(view -> {
             if (index > 0) {
