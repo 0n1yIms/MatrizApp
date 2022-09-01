@@ -1,3 +1,3 @@
 # Matrix app
-###acerca
+### acerca
 una app para realizar operaciones matematicas
