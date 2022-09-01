@@ -32,6 +32,7 @@ public class Escalonador {
 
     public void resolver() {
         escalonar();
+        clear();
         invertSteps();
         result = analyzeResult();
     }
@@ -129,6 +130,33 @@ public class Escalonador {
 
         steps.add(new MatInfo(previousMat, mat.getCopy(), str));
 //            mostrar_matriz();
+    }
+    
+    void clear()
+    {
+        for (int r = 0; r < mat.rows; r++) {
+            int numberCount = 0;
+            int columnIdx = -1;
+            for (int c = 0; c < mat.cols  - 1; c++) {
+                if(mat.mat[r][c].toFloat() != 0.f) {
+                    numberCount++;
+                    columnIdx = c;
+                }
+            }
+
+            if(numberCount == 1) {
+                Mat previousMat = mat.getCopy();
+                String str = "f" + (r + 1) + " = " +
+                        " f" + (r + 1) + " * 1/" + mat.mat[r][columnIdx].toStr();
+
+                Num n = mat.mat[r][columnIdx];
+                Num ti = mat.mat[r][mat.cols - 1];
+                mat.mat[r][columnIdx] = new Num(1);
+                mat.mat[r][mat.cols - 1] = ti.div(n);
+
+                steps.add(new MatInfo(previousMat, mat.getCopy(), str));
+            }
+        }
     }
 
     int analyzeResult()

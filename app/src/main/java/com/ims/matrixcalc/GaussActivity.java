@@ -230,6 +230,7 @@ public class GaussActivity extends AppCompatActivity {
                 et.setText(matRta.mat[j][i].toStr());
                 et.setTextAlignment(EditText.TEXT_ALIGNMENT_CENTER);
                 et.setTextColor(Color.BLACK);
+                et.setEnabled(false);
                 et.setWidth(200);
             }
         }

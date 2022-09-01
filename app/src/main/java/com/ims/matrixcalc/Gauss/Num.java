@@ -1,39 +1,47 @@
 package com.ims.matrixcalc.Gauss;
 
-public class Num
-{
+public class Num {
     public long num;
     public long den = 1;
 
-    public Num(long n)
-    {
+    public Num(long n) {
         num = n;
     }
-    public Num(long n, long d)
-    {
+
+    public Num(long n, long d) {
         num = n;
         den = d;
     }
 
-    public Num sum(Num n)
-    {
+    public Num sum(Num n) {
         long denominator = mcm(den, n.den);
         long numerator = ((denominator / den) * num) + ((denominator / n.den) * n.num);
         return new Num(numerator, denominator);
     }
-    public Num res(Num n)
-    {
+
+    public Num res(Num n) {
         long denominator = mcm(den, n.den);
         long numerator = ((denominator / den) * num) - ((denominator / n.den) * n.num);
         return new Num(numerator, denominator);
     }
-    public Num mult(Num n)
-    {
+
+    public Num mult(Num n) {
         return new Num(num * n.num, den * n.den);
     }
-    public Num div(Num n)
+
+    public Num div(Num n) {
+        Num d = new Num(num * n.den, den * n.num);
+        d.simplify();
+        if(d.num == 0)
+            d.den = 1;
+        return d;
+    }
+
+    public void simplify()
     {
-        return new Num(num * n.den, den * n.num);
+        long mcd = mcd(num, den);
+        num = num / mcd;
+        den = den / mcd;
     }
 
     public Num getCopy()

@@ -40,8 +40,10 @@ public class GaussStepsActivity extends AppCompatActivity {
         tvInfo = findViewById(R.id.tv_info);
         show();
 
+//        findViewById(R.id.btn_back_activity).setOnClickListener((view ->
+//                startActivity(new Intent(GaussStepsActivity.this, GaussActivity.class))));
         findViewById(R.id.btn_back_activity).setOnClickListener((view ->
-                startActivity(new Intent(GaussStepsActivity.this, GaussActivity.class))));
+                finish()));
 
         findViewById(R.id.btn_back).setOnClickListener(view -> {
             if (index > 0) {
