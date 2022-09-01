@@ -151,8 +151,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rta"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/tv_rta">
 
 
         <ScrollView
@@ -181,28 +180,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/btn_sistema_matriz"
+        android:id="@+id/btn_steps"
         android:layout_width="0dp"
         android:layout_height="130px"
         android:layout_marginStart="100px"
         android:layout_marginEnd="10px"
         android:layout_marginBottom="50px"
         android:background="@drawable/ic_btn_rounded"
-        android:text="ver Sistema"
+        android:text="pasos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_v_mid"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_steps"
-        android:layout_width="0dp"
-        android:layout_height="130px"
-        android:layout_marginHorizontal="100px"
-        android:layout_marginBottom="20px"
-        android:background="@drawable/ic_btn_rounded"
-        android:text="Pasos"
-        app:layout_constraintBottom_toTopOf="@id/btn_resolve"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
