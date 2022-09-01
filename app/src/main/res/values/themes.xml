@@ -13,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Theme.MatrixCalculator" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/utn</item>
@@ -28,4 +29,13 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTitleSize">0dp</item>
     </style>
+
+    <style name="Theme.MatrixCalculator.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MatrixCalculator.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MatrixCalculator.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -9,38 +9,51 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import com.ims.matrixcalc.Gauss.GaussJordan;
+import com.ims.matrixcalc.Gauss.Escalonador;
 import com.ims.matrixcalc.Gauss.Mat;
 import com.ims.matrixcalc.Gauss.Num;
+
+import java.util.ArrayList;
 
 public class GaussActivity extends AppCompatActivity {
     private final int DATA_TYPE_MATRIX = 0;
     private final int DATA_TYPE_SYSTEM = 1;
+    public final String ERASE = "erase";
+    public final String STEPS = "steps";
 
     private int dataType = DATA_TYPE_MATRIX;
 
     private EditText etMatRows, etMatCols;
     private GridLayout gridMat;
     private GridLayout gridRta;
-    boolean changed;
+    Button btnSistemaMatriz;
 
-    private Mat matMain = new Mat(3,3,0);
+    private Mat matMain = new Mat(3,4,0);
     private Mat matRta;
-
+    private boolean resolved = false;
+    private ArrayList<Escalonador.MatInfo> steps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gauss);
 
+        if(getIntent().hasExtra(ERASE))
+        {
+            if((boolean) getIntent().getExtras().get(ERASE))
+                resolved = false;
+        }
+
         etMatRows = findViewById(R.id.et_matrix_size_rows);
         etMatCols = findViewById(R.id.et_matrix_size_cols);
+        btnSistemaMatriz = findViewById(R.id.btn_sistema_matriz);
 
         gridMat = findViewById(R.id.grid);
         gridRta = findViewById(R.id.grid_rta);
@@ -74,7 +87,7 @@ public class GaussActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.toString().isEmpty()) {
-                    int matCols = Integer.parseInt(charSequence.toString());
+                    int matCols = Integer.parseInt(charSequence.toString()) + 1;
                     matMain.changeSize(matMain.rows, matCols);
                     updateData();
                 }
@@ -85,27 +98,31 @@ public class GaussActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_sistema_matriz).setOnClickListener((view) ->
+        btnSistemaMatriz.setOnClickListener((view) ->
         {
-            if(changed)
-            {
-                changed = false;
+            if(dataType == DATA_TYPE_MATRIX)
                 changeDataType(DATA_TYPE_SYSTEM);
-            }
             else
-            {
                 changeDataType(DATA_TYPE_MATRIX);
-                changed = true;
+        });
+        findViewById(R.id.btn_steps).setOnClickListener((view) ->
+        {
+            if(resolved && steps.size() != 0)
+            {
+                GaussStepsActivity.steps = steps;
+                Intent intent = new Intent(GaussActivity.this, GaussStepsActivity.class);
+                startActivity(intent);
             }
         });
 
-        findViewById(R.id.btn_calc).setOnClickListener((view) ->
+
+        findViewById(R.id.btn_resolve).setOnClickListener((view) ->
         {
-            GaussJordan gaussJordan = new GaussJordan();
-            matRta = gaussJordan.calc(matMain.getCopy()).getCopy();
-//            matRta = matMain.getCopy();
+            Escalonador gaussJordan = new Escalonador(matMain.getCopy());
+            matRta = gaussJordan.resolver().getCopy();
+            steps = gaussJordan.steps;
             showMatrix();
-//            showMatrixs(new Mat[]{new Mat()});
+            resolved = true;
         });
 
         findViewById(R.id.btnBack).setOnClickListener((view ->
@@ -118,6 +135,7 @@ public class GaussActivity extends AppCompatActivity {
         {
             runOnUiThread(()->
             {
+                gridMat.setVisibility(View.INVISIBLE);
                 gridMat.removeAllViews();
                 gridMat.setColumnCount(matMain.cols);
             });
@@ -183,6 +201,7 @@ public class GaussActivity extends AppCompatActivity {
                     }
                 }
             }
+            runOnUiThread(()-> gridMat.setVisibility(View.VISIBLE));
         }).start();
     }
 
@@ -192,6 +211,7 @@ public class GaussActivity extends AppCompatActivity {
         {
             runOnUiThread(()->
             {
+                gridMat.setVisibility(View.INVISIBLE);
                 gridMat.removeAllViews();
                 gridMat.setColumnCount(matMain.cols);
             });
@@ -243,6 +263,7 @@ public class GaussActivity extends AppCompatActivity {
                     });
                 }
             }
+            runOnUiThread(()-> gridMat.setVisibility(View.VISIBLE));
         }).start();
     }
 
@@ -258,6 +279,11 @@ public class GaussActivity extends AppCompatActivity {
     void changeDataType(int dataType)
     {
         this.dataType = dataType;
+        if(dataType == DATA_TYPE_MATRIX)
+            btnSistemaMatriz.setText("Ver Sistema");
+        else
+            btnSistemaMatriz.setText("Ver Matriz");
+
 //        if(dataType == DATA_TYPE_MATRIX)
 //        {
 //            ViewGroup parent = (ViewGroup) gridMat.getParent();
@@ -285,6 +311,7 @@ public class GaussActivity extends AppCompatActivity {
     void showMatrix() {
         if(matRta == null)
             return;
+        runOnUiThread(()-> gridRta.setVisibility(View.INVISIBLE));
         findViewById(R.id.sv_rta).setBackground(getDrawable(R.drawable.border));
         if (dataType == DATA_TYPE_MATRIX) {
             runOnUiThread(()->
@@ -348,6 +375,7 @@ public class GaussActivity extends AppCompatActivity {
                 }
             }
         }
+        runOnUiThread(()-> gridRta.setVisibility(View.VISIBLE));
     }
 
 

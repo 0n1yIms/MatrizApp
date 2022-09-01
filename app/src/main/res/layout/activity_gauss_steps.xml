@@ -5,7 +5,7 @@
     android:layout_width="1080px"
     android:layout_height="2300px"
     android:background="@color/white"
-    tools:context=".GaussActivity">
+    tools:context=".GaussStepsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -40,68 +40,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70px"
-        android:layout_marginEnd="20px"
-        android:text="@string/gauss_matrix_size"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/et_matrix_size_rows"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-    <EditText
-        android:id="@+id/et_matrix_size_rows"
-        android:layout_width="160px"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20px"
-        android:backgroundTint="@color/utn"
-        android:inputType="number"
-        android:text="3"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.482" />
-
-    <EditText
-        android:id="@+id/et_matrix_size_cols"
-        android:layout_width="160px"
-        android:layout_height="48dp"
-        android:layout_marginEnd="100px"
-        android:inputType="number"
-        android:text="3"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/utn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_matrix_size_rows" />
-
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20px"
-        android:text="x"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/et_matrix_size_rows"
-        app:layout_constraintEnd_toStartOf="@+id/et_matrix_size_cols"
-        app:layout_constraintTop_toTopOf="@+id/et_matrix_size_rows"
-        app:layout_constraintVertical_bias="0.482" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_mat_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="100px"
-        android:layout_marginVertical="10px"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_mid"
+        android:layout_marginVertical="50px"
+        app:layout_constraintBottom_toTopOf="@+id/tv_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_matrix_size_rows">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <ScrollView
             android:id="@+id/sv_mat"
@@ -120,7 +69,7 @@
                 android:overScrollMode="never">
 
                 <GridLayout
-                    android:id="@+id/grid"
+                    android:id="@+id/grid_previous"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </HorizontalScrollView>
@@ -128,27 +77,28 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tv_rta"
+        android:id="@+id/tv_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100px"
-        android:text="RTA:"
+        android:text=" "
         android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_mid" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_rta"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="100px"
-        android:layout_marginVertical="10px"
-        app:layout_constraintBottom_toTopOf="@+id/btn_steps"
+        android:layout_marginVertical="50px"
+        app:layout_constraintBottom_toTopOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rta"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info"
         app:layout_constraintVertical_bias="0.0">
 
 
@@ -157,6 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
+            android:background="@drawable/border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,67 +119,34 @@
                 android:overScrollMode="never">
 
                 <GridLayout
-                    android:id="@+id/grid_rta"
+                    android:id="@+id/grid_later"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </HorizontalScrollView>
         </ScrollView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/btn_sistema_matriz"
+        android:id="@+id/btn_back"
         android:layout_width="0dp"
         android:layout_height="130px"
         android:layout_marginStart="100px"
-        android:layout_marginEnd="10px"
         android:layout_marginBottom="50px"
         android:background="@drawable/ic_btn_rounded"
-        android:text="ver Sistema"
+        android:text="Atras"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_v_mid"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_steps"
+        android:id="@+id/btn_next"
         android:layout_width="0dp"
         android:layout_height="130px"
-        android:layout_marginHorizontal="100px"
-        android:layout_marginBottom="20px"
-        android:background="@drawable/ic_btn_rounded"
-        android:text="Pasos"
-        app:layout_constraintBottom_toTopOf="@id/btn_resolve"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_resolve"
-        android:layout_width="0dp"
-        android:layout_height="130px"
-        android:layout_marginStart="10px"
         android:layout_marginEnd="100px"
         android:layout_marginBottom="50px"
         android:background="@drawable/ic_btn_rounded"
-        android:text="Calcular"
+        android:text="Siguiente"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline_v_mid" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_mid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_v_mid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
