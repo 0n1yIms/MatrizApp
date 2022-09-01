@@ -33,7 +33,8 @@ public class GaussActivity extends AppCompatActivity {
     private EditText etMatRows, etMatCols;
     private GridLayout gridMat;
     private GridLayout gridRta;
-    Button btnSistemaMatriz;
+    private Button btnSistemaMatriz;
+    private TextView tvRta;
 
     private Mat matMain = new Mat(3,4,0);
     private Mat matRta;
@@ -54,12 +55,13 @@ public class GaussActivity extends AppCompatActivity {
         etMatRows = findViewById(R.id.et_matrix_size_rows);
         etMatCols = findViewById(R.id.et_matrix_size_cols);
         btnSistemaMatriz = findViewById(R.id.btn_sistema_matriz);
+        tvRta = findViewById(R.id.tv_rta);
 
         gridMat = findViewById(R.id.grid);
         gridRta = findViewById(R.id.grid_rta);
 
-//        changeDataType(DATA_TYPE_MATRIX);
         changeDataType(DATA_TYPE_SYSTEM);
+        tvRta.setVisibility(View.INVISIBLE);
 
         etMatRows.addTextChangedListener(new TextWatcher() {
             @Override
@@ -283,23 +285,6 @@ public class GaussActivity extends AppCompatActivity {
             btnSistemaMatriz.setText("Ver Sistema");
         else
             btnSistemaMatriz.setText("Ver Matriz");
-
-//        if(dataType == DATA_TYPE_MATRIX)
-//        {
-//            ViewGroup parent = (ViewGroup) gridMat.getParent();
-//            int index = parent.indexOfChild(gridMat);
-//            parent.removeView(gridMat);
-//            parent.addView(gridLayoutMatrix, index);
-//            gridMat = gridLayoutMatrix;
-//        }
-//        else
-//        {
-//            ViewGroup parent = (ViewGroup) gridMat.getParent();
-//            int index = parent.indexOfChild(gridMat);
-//            parent.removeView(gridMat);
-//            parent.addView(gridLayoutSystem, index);
-//            gridMat = gridLayoutSystem;
-//        }
         updateData();
     }
 
@@ -313,6 +298,7 @@ public class GaussActivity extends AppCompatActivity {
             return;
         runOnUiThread(()-> gridRta.setVisibility(View.INVISIBLE));
         findViewById(R.id.sv_rta).setBackground(getDrawable(R.drawable.border));
+        tvRta.setVisibility(View.VISIBLE);
         if (dataType == DATA_TYPE_MATRIX) {
             runOnUiThread(()->
             {

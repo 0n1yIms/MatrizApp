@@ -39,10 +39,9 @@ public class Escalonador {
             steps.add(info.get(i));
         }
     }
-
     private void escalonar() {
         mostrar_matriz();
-        for (int i = 0; i < mat.cols - 1; i++) {
+        for (int i = 0; i < Math.min(mat.cols, mat.rows) - 1; i++) {
             if (check(i, i)) {
                 gaussjordan(i, i);
             }
@@ -127,8 +126,6 @@ public class Escalonador {
         }
         Log.e("", str);
     }
-
-
 }
 
 
