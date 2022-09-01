@@ -43,6 +43,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/tv_before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Antes"
+        android:layout_marginTop="50px"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_mat_main"
@@ -54,8 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/tv_before">
 
         <ScrollView
             android:id="@+id/sv_mat"
@@ -66,7 +75,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -92,6 +102,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
+    <TextView
+        android:id="@+id/tv_after"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Despues"
+        android:layout_marginTop="50px"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_rta"
@@ -103,20 +124,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_info"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/tv_after">
 
 
         <ScrollView
             android:id="@+id/sv_rta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:overScrollMode="never"
             android:background="@drawable/border"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
