@@ -64,7 +64,7 @@ public class GaussActivity extends AppCompatActivity {
         gridMat = findViewById(R.id.grid);
         gridRta = findViewById(R.id.grid_rta);
 
-        tvRta.setVisibility(View.INVISIBLE);
+        tvRta.setText("");
 
         etMatRows.addTextChangedListener(new TextWatcher() {
             @Override
@@ -261,7 +261,6 @@ public class GaussActivity extends AppCompatActivity {
             return;
         runOnUiThread(() -> gridRta.setVisibility(View.INVISIBLE));
         findViewById(R.id.sv_rta).setBackground(getDrawable(R.drawable.border));
-        tvRta.setVisibility(View.VISIBLE);
         runOnUiThread(() ->
         {
             gridRta.removeAllViews();
