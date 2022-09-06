@@ -1,6 +1,7 @@
 package com.ims.matrixcalc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
@@ -37,6 +38,7 @@ public class GaussActivity extends AppCompatActivity {
     private GridLayout gridMat;
     private GridLayout gridRta;
     private TextView tvRta;
+    private MotionLayout motionBase;
 
     private Mat matMain = new Mat(3, 4, 0);
     private Mat matRta;
@@ -48,11 +50,13 @@ public class GaussActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gauss);
 
+
         if (getIntent().hasExtra(ERASE)) {
             if ((boolean) getIntent().getExtras().get(ERASE))
                 resolved = false;
         }
 
+        motionBase = findViewById(R.id.motion_base);
         etMatRows = findViewById(R.id.et_matrix_size_rows);
         etMatCols = findViewById(R.id.et_matrix_size_cols);
         tvRta = findViewById(R.id.tv_rta);
@@ -71,11 +75,12 @@ public class GaussActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.toString().isEmpty()) {
                     int matRows = Integer.parseInt(charSequence.toString());
-                    matMain.changeSize(matRows, matMain.cols);
-                    updateData();
+                    if(matRows < 10) {
+                        matMain.changeSize(matRows, matMain.cols);
+                        updateData();
+                    }
                 }
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
             }
@@ -89,13 +94,17 @@ public class GaussActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.toString().isEmpty()) {
                     int matCols = Integer.parseInt(charSequence.toString()) + 1;
-                    matMain.changeSize(matMain.rows, matCols);
-                    updateData();
+                    if(matCols - 1 < 10) {
+                        matMain.changeSize(matMain.rows, matCols);
+                        updateData();
+                    }
                 }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+//                if(!editable.toString().equals(Integer.toString(matMain.cols)))
+//                    etMatCols.setText(Integer.toString(matMain.cols));
             }
         });
 
@@ -115,6 +124,7 @@ public class GaussActivity extends AppCompatActivity {
             gaussJordan.resolver();
             steps = gaussJordan.getSteps();
             if(steps.size() > 0) {
+                motionBase.transitionToEnd();
                 matRta = gaussJordan.getMat();
                 if (gaussJordan.getResult() == Escalonador.SCD)
                     tvRta.setText("Sistema Compatible Determinado");
