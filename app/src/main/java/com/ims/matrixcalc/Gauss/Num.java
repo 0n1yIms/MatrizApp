@@ -42,6 +42,8 @@ public class Num {
         long mcd = mcd(num, den);
         num = num / mcd;
         den = den / mcd;
+        if(num == 0)
+            den = 1;
     }
 
     public Num getCopy()
@@ -50,6 +52,7 @@ public class Num {
     }
     public String toStr()
     {
+        simplify();
         if(den == 1)
             return "" + num;
         else

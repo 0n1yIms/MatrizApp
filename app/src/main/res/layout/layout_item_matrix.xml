@@ -19,7 +19,7 @@
         android:layout_height="50dp"
         android:layout_margin="0.5dp"
         android:backgroundTint="@color/utn"
-        android:inputType="number"
+        android:inputType="numberSigned|numberDecimal"
         android:hint="0"
         android:textColorHint="@color/text_hint"
         android:textAlignment="center"

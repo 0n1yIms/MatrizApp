@@ -59,4 +59,16 @@ public class Mat
         }
         return m;
     }
+
+    public String toString()
+    {
+        String str = "";
+        for (int j = 0; j < rows; j++) {
+            for (int i = 0; i < cols; i++) {
+                str += mat[j][i].toStr() + " ";
+            }
+            str += "\n";
+        }
+        return str;
+    }
 }

@@ -66,11 +66,11 @@ public class Escalonador {
     }
 
     private boolean check(int col, int fila) {
-        if (mat.mat[fila][col].toInt() != 0)
+        if (mat.mat[fila][col].toFloat() != 0.f)
             return true;
         else {
             for (int i = fila + 1; i < mat.rows; i++) {
-                if (mat.mat[i][col].toInt() != 0) {
+                if (mat.mat[i][col].toFloat() != 0.f) {
                     intercambiar(fila, i);
                     return true;
                 }
@@ -90,6 +90,7 @@ public class Escalonador {
 
         String str = "Intercambio " + (f1 + 1) + " con " + (f2 + 1);
         steps.add(new MatInfo(previousMat, mat.getCopy(), str));
+        Log.e(TAG, "intercambiar: " + str);
     }
 
     void gaussjordan(int col, int fila) {
@@ -119,6 +120,7 @@ public class Escalonador {
                 mat.mat[fpivote][col].toStr() + "*f" + (fcero + 1) +
                 " - " + mat.mat[fcero][col].toStr() + "*f" + (fpivote + 1);
         Mat previousMat = mat.getCopy();
+        Log.e(TAG, "hacer_cero: " + str);
 
         Num nro_pivote = mat.mat[fpivote][col].getCopy();
         Num nro_cero = mat.mat[fcero][col].getCopy();

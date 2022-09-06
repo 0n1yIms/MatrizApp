@@ -70,11 +70,21 @@ public class MainActivity extends AppCompatActivity {
         {
             ArrayList<ItemInterface> items = new ArrayList<>(8);
 
-            items.add(new ItemInterface(getDrawable(R.drawable.gauss)) {
+            items.add(new ItemInterface(getDrawable(R.drawable.ic_sel)) {
                 @Override
                 public void onTouch() {
                     Intent startGauss = new Intent(MainActivity.this, GaussActivity.class);
                     startActivity(startGauss);
+                }
+            });
+            items.add(new ItemInterface(getDrawable(R.drawable.ic_op_mat)) {
+                @Override
+                public void onTouch() {
+                }
+            });
+            items.add(new ItemInterface(getDrawable(R.drawable.ic_mcm_mcd)) {
+                @Override
+                public void onTouch() {
                 }
             });
 
@@ -96,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setAdapter(rvAdapter);
             });
         });
-
-
-
     }
 
     @Override
