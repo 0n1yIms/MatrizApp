@@ -9,8 +9,6 @@
         motion:duration="100">
        <KeyFrameSet>
        </KeyFrameSet>
-        <OnSwipe motion:maxAcceleration="100.0"
-            motion:maxVelocity="10.0" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
